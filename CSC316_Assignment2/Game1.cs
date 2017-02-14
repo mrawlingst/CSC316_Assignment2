@@ -9,7 +9,7 @@ namespace CSC316_Assignment2
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Model earth, sky, ground;
+        Model earth, sky, ground, avatar;
 
         Vector3 cameraPos;
         Vector3 playerPos;
@@ -28,7 +28,7 @@ namespace CSC316_Assignment2
             IsMouseVisible = true;
 
             cameraPos = new Vector3(0, 10, -50);
-            playerPos = new Vector3(0, 5, 0);
+            playerPos = new Vector3(0, 0, 0);
             rotationY = 0f;
 
             base.Initialize();
@@ -42,6 +42,7 @@ namespace CSC316_Assignment2
             earth = Content.Load<Model>("earth");
             sky = Content.Load<Model>("sky");
             ground = Content.Load<Model>("floor");
+            avatar = Content.Load<Model>("avatar");
         }
 
         protected override void UnloadContent()
@@ -52,8 +53,6 @@ namespace CSC316_Assignment2
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            //Vector3 move = new Vector3(0, 0, 1);
 
             // Turn left/right
             if (Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.Left))
@@ -82,19 +81,25 @@ namespace CSC316_Assignment2
 
             Matrix world = Matrix.Identity;
             Matrix view = Matrix.CreateLookAt(Vector3.Transform(cameraPos, Matrix.CreateRotationY(rotationY)) + playerPos, playerPos, Vector3.Up);
-            Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, 1, 0.0001f, 1000.0f);
+            Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, 1, 1f, 1000.0f);
 
-            // Scale ground 100x
+            // Draw avatar
+            world = Matrix.CreateScale(1) * Matrix.CreateRotationY(rotationY) * Matrix.CreateTranslation(playerPos);
+            avatar.Draw(world, view, projection);
+
+            // Draw ground
             world = Matrix.CreateScale(100);
             ground.Draw(world, view, projection);
 
-            // Scale earth 1x
+            // Draw earth
             world = Matrix.CreateScale(1);
             earth.Draw(world, view, projection);
 
-            // Scale sky 100x
+            // Draw sky
             world = Matrix.CreateScale(100);
             sky.Draw(world, view, projection);
+
+            
 
             base.Draw(gameTime);
         }
