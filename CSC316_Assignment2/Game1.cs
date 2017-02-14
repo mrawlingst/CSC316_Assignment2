@@ -63,13 +63,13 @@ namespace CSC316_Assignment2
             // Move forward/backward
             if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up))
                 playerPos += Vector3.Transform(new Vector3(0, 0, 1), Matrix.CreateRotationY(rotationY));
-            else if (Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down))
+            if (Keyboard.GetState().IsKeyDown(Keys.S) || Keyboard.GetState().IsKeyDown(Keys.Down))
                 playerPos -= Vector3.Transform(new Vector3(0, 0, 1), Matrix.CreateRotationY(rotationY));
 
             // Strafe left/right
             if (Keyboard.GetState().IsKeyDown(Keys.Q))
                 playerPos += Vector3.Transform(new Vector3(1, 0, 0), Matrix.CreateRotationY(rotationY));
-            else if (Keyboard.GetState().IsKeyDown(Keys.E))
+            if (Keyboard.GetState().IsKeyDown(Keys.E))
                 playerPos -= Vector3.Transform(new Vector3(1, 0, 0), Matrix.CreateRotationY(rotationY));
 
             base.Update(gameTime);
