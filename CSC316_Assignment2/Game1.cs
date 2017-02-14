@@ -12,6 +12,10 @@ namespace CSC316_Assignment2
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Model earth, sky, ground;
+
+        Vector3 cameraPos;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -26,7 +30,7 @@ namespace CSC316_Assignment2
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            cameraPos = new Vector3(0, 10, -50);
 
             base.Initialize();
         }
@@ -40,7 +44,9 @@ namespace CSC316_Assignment2
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            earth = Content.Load<Model>("earth");
+            sky = Content.Load<Model>("sky");
+            ground = Content.Load<Model>("floor");
         }
 
         /// <summary>
@@ -75,7 +81,21 @@ namespace CSC316_Assignment2
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            Matrix world = Matrix.Identity;
+            Matrix view = Matrix.CreateLookAt(cameraPos, Vector3.Zero, Vector3.Up);
+            Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, 1, 0.0001f, 1000.0f);
+
+            // Scale ground 100x
+            world = Matrix.CreateScale(100);
+            ground.Draw(world, view, projection);
+
+            // Scale earth 1x
+            world = Matrix.CreateScale(1);
+            earth.Draw(world, view, projection);
+
+            // Scale sky 100x
+            world = Matrix.CreateScale(100);
+            sky.Draw(world, view, projection);
 
             base.Draw(gameTime);
         }
