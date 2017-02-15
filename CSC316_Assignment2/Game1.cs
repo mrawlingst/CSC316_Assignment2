@@ -1,9 +1,44 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace CSC316_Assignment2
 {
+    public enum ModelName { earth, }
+    public class GameObject
+    {
+        [XmlElement("Position")]
+        public Vector3 position = Vector3.Zero;
+
+        [XmlElement("Scale")]
+        public float scale = 1;
+
+        [XmlElement("RotateXSpeed")]
+        public float rotateXSpeed = 0;
+
+        [XmlElement("RotateYSpeed")]
+        public float rotateYSpeed = 0;
+
+        [XmlElement("RotateZSpeed")]
+        public float rotateZSpeed = 0;
+
+        [XmlElement("MoveSpeed")]
+        public float MoveSpeed = 1;
+
+        [XmlElement("Waypoints")]
+        public List<Vector3> Waypoints;
+
+        [XmlElement("ModelName")]
+        public ModelName modelName = ModelName.earth;
+
+        [XmlIgnore]
+        public int CurrentWaypoint = 0;
+    }
+
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
@@ -11,11 +46,17 @@ namespace CSC316_Assignment2
 
         Model earth, sky, ground, avatar;
 
+        // Player settings
         Vector3 cameraPos;
         Vector3 playerPos;
         float rotationY;
+        bool isJumping;
+        bool isInAir;
 
-        const float rotationSpeed = 0.05f;
+        // GameObjects
+        List<GameObject> gameObjects;
+
+        const float ROTATION_SPEED = 0.05f;
 
         public Game1()
         {
@@ -31,6 +72,21 @@ namespace CSC316_Assignment2
             playerPos = new Vector3(0, 0, 0);
             rotationY = 0f;
 
+            gameObjects = new List<GameObject>();
+
+            // Read gameobjects.xml
+            try
+            {
+                XmlSerializer gameObjectSerializer = new XmlSerializer(typeof(List<GameObject>));
+                TextReader gameObjectsReader = new StreamReader("gameobjects.xml");
+                gameObjects = (List<GameObject>)gameObjectSerializer.Deserialize(gameObjectsReader);
+                gameObjectsReader.Close();
+            }
+            catch (Exception e)
+            {
+                Exit();
+            }
+
             base.Initialize();
         }
 
@@ -43,6 +99,19 @@ namespace CSC316_Assignment2
             sky = Content.Load<Model>("sky");
             ground = Content.Load<Model>("floor");
             avatar = Content.Load<Model>("avatar");
+
+            //List<GameObject> goList = new List<GameObject>();
+            //GameObject go = new GameObject();
+            //go.Waypoints = new List<Vector3>();
+            //go.Waypoints.Add(new Vector3(0, 0, 0));
+            //go.Waypoints.Add(new Vector3(0, 0, 0));
+            //goList.Add(go);
+
+            //GameObject go1 = new GameObject();
+            //goList.Add(go1);
+            //XmlSerializer gameObjectSerializer = new XmlSerializer(typeof(List<GameObject>));
+            //TextWriter objectsWriter = new StreamWriter("gameobjects.xml");
+            //gameObjectSerializer.Serialize(objectsWriter, goList);
         }
 
         protected override void UnloadContent()
@@ -56,9 +125,9 @@ namespace CSC316_Assignment2
 
             // Turn left/right
             if (Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.Left))
-                rotationY += rotationSpeed;
+                rotationY += ROTATION_SPEED;
             if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.Right))
-                rotationY -= rotationSpeed;
+                rotationY -= ROTATION_SPEED;
 
             // Move forward/backward
             if (Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.Up))
@@ -71,6 +140,24 @@ namespace CSC316_Assignment2
                 playerPos += Vector3.Transform(new Vector3(1, 0, 0), Matrix.CreateRotationY(rotationY));
             if (Keyboard.GetState().IsKeyDown(Keys.E))
                 playerPos -= Vector3.Transform(new Vector3(1, 0, 0), Matrix.CreateRotationY(rotationY));
+
+            // Waypoints
+            foreach (GameObject gameObject in gameObjects)
+            {
+                // Must have at least 2 waypoints (1 makes no sense)
+                if (gameObject.Waypoints.Count > 1)
+                {
+                    // calculate the distance for error margin
+                    float distance = Math.Abs((gameObject.position - gameObject.Waypoints[gameObject.CurrentWaypoint]).Length());
+                    if (distance < 0.5f)
+                        gameObject.CurrentWaypoint = ((gameObject.CurrentWaypoint + 1 >= gameObject.Waypoints.Count) ? 0 : gameObject.CurrentWaypoint + 1);
+
+                    // move the object
+                    Vector3 direction = gameObject.Waypoints[gameObject.CurrentWaypoint] - gameObject.position;
+                    direction.Normalize();
+                    gameObject.position += direction * (float)gameTime.ElapsedGameTime.TotalSeconds * gameObject.MoveSpeed;
+                }
+            }
 
             base.Update(gameTime);
         }
@@ -106,7 +193,18 @@ namespace CSC316_Assignment2
             world = Matrix.CreateScale(100);
             sky.Draw(world, view, projection);
 
-            
+            // Draw gameobjects
+            foreach (GameObject gameObject in gameObjects)
+            {
+                // Scale * RotationXYZ * Translation
+                world = Matrix.CreateScale(gameObject.scale)
+                        * Matrix.CreateRotationX(gameObject.rotateXSpeed * (float)gameTime.TotalGameTime.TotalSeconds)
+                        * Matrix.CreateRotationY(gameObject.rotateYSpeed * (float)gameTime.TotalGameTime.TotalSeconds)
+                        * Matrix.CreateRotationZ(gameObject.rotateZSpeed * (float)gameTime.TotalGameTime.TotalSeconds)
+                        * Matrix.CreateTranslation(gameObject.position);
+                if (gameObject.modelName == ModelName.earth)
+                    earth.Draw(world, view, projection);
+            }
 
             base.Draw(gameTime);
         }
