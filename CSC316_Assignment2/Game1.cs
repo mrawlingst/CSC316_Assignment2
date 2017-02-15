@@ -85,6 +85,13 @@ namespace CSC316_Assignment2
 
             // Draw avatar
             world = Matrix.CreateScale(1) * Matrix.CreateRotationY(rotationY) * Matrix.CreateTranslation(playerPos);
+            foreach (var mesh in avatar.Meshes)
+            {
+                foreach (BasicEffect effect in mesh.Effects)
+                {
+                    effect.DiffuseColor = Color.Red.ToVector3();
+                }
+            }
             avatar.Draw(world, view, projection);
 
             // Draw ground
