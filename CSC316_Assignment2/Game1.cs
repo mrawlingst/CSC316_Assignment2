@@ -53,6 +53,7 @@ namespace CSC316_Assignment2
         Vector3 cameraPos;
         Vector3 playerPos;
         float rotationY;
+        float jumpHeight;
 
         // GameObjects
         List<GameObject> gameObjects;
@@ -146,6 +147,20 @@ namespace CSC316_Assignment2
                 playerPos += Vector3.Transform(new Vector3(1, 0, 0), Matrix.CreateRotationY(rotationY));
             if (Keyboard.GetState().IsKeyDown(Keys.E))
                 playerPos -= Vector3.Transform(new Vector3(1, 0, 0), Matrix.CreateRotationY(rotationY));
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && playerPos.Y <= 0)
+            {
+                jumpHeight = 10;
+            }
+
+            if (jumpHeight > 0)
+            {
+                playerPos.Y += 10 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                jumpHeight -= 10 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
+            if (playerPos.Y > 0 && jumpHeight <= 0)
+                playerPos.Y -= 10 * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             // Waypoints
             foreach (GameObject gameObject in gameObjects)
