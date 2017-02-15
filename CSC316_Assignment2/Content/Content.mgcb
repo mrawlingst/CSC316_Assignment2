@@ -184,6 +184,3 @@
 /processorParam:TextureFormat=Compressed
 /build:wall.fbx
 
-#begin gameobjects.xml
-/copy:gameobjects.xml
-

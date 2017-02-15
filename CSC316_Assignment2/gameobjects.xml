@@ -1,45 +1,325 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfGameObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--gorilla-->
   <GameObject>
     <Position>
-      <X>20</X>
+      <X>-5</X>
       <Y>0</Y>
-      <Z>20</Z>
+      <Z>60</Z>
     </Position>
-    <Scale>1</Scale>
+    <Scale>3</Scale>
     <RotationYFacing>30</RotationYFacing>
     <RotateXSpeed>0</RotateXSpeed>
-    <RotateYSpeed>0</RotateYSpeed>
+    <RotateYSpeed>2</RotateYSpeed>
     <RotateZSpeed>0</RotateZSpeed>
-    <MoveSpeed>5</MoveSpeed>
+    <MoveSpeed>30</MoveSpeed>
+    <Waypoints>
+      <X>-5</X>
+      <Y>0</Y>
+      <Z>60</Z>
+    </Waypoints>
+    <Waypoints>
+      <X>-5</X>
+      <Y>5</Y>
+      <Z>70</Z>
+    </Waypoints>
+    <Waypoints>
+      <X>-5</X>
+      <Y>0</Y>
+      <Z>80</Z>
+    </Waypoints>
+    <Waypoints>
+      <X>5</X>
+      <Y>5</Y>
+      <Z>80</Z>
+    </Waypoints>
     <Waypoints>
       <X>20</X>
       <Y>0</Y>
-      <Z>20</Z>
+      <Z>80</Z>
     </Waypoints>
     <Waypoints>
-      <X>40</X>
-      <Y>0</Y>
-      <Z>40</Z>
+      <X>20</X>
+      <Y>5</Y>
+      <Z>70</Z>
     </Waypoints>
     <Waypoints>
-      <X>60</X>
+      <X>20</X>
       <Y>0</Y>
-      <Z>10</Z>
+      <Z>60</Z>
+    </Waypoints>
+    <Waypoints>
+      <X>0</X>
+      <Y>5</Y>
+      <Z>60</Z>
     </Waypoints>
     <ModelName>gorilla</ModelName>
   </GameObject>
+  <!--front 2-->
   <GameObject>
     <Position>
       <X>0</X>
       <Y>0</Y>
-      <Z>0</Z>
+      <Z>50</Z>
     </Position>
-    <Scale>1</Scale>
-    <RotationYFacing>45</RotationYFacing>
+    <Scale>2</Scale>
+    <RotationYFacing>0</RotationYFacing>
     <RotateXSpeed>0</RotateXSpeed>
     <RotateYSpeed>0</RotateYSpeed>
     <RotateZSpeed>0</RotateZSpeed>
-    <ModelName>wall</ModelName>
+    <ModelName>cage</ModelName>
+  </GameObject>
+  <GameObject>
+    <Position>
+      <X>20</X>
+      <Y>0</Y>
+      <Z>50</Z>
+    </Position>
+    <Scale>2</Scale>
+    <RotationYFacing>0</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>cage</ModelName>
+  </GameObject>
+  <!--left 2-->
+  <GameObject>
+    <Position>
+      <X>30</X>
+      <Y>0</Y>
+      <Z>60</Z>
+    </Position>
+    <Scale>2</Scale>
+    <RotationYFacing>90</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>cage</ModelName>
+  </GameObject>
+  <GameObject>
+    <Position>
+      <X>30</X>
+      <Y>0</Y>
+      <Z>80</Z>
+    </Position>
+    <Scale>2</Scale>
+    <RotationYFacing>90</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>cage</ModelName>
+  </GameObject>
+  <!--right 2-->
+  <GameObject>
+    <Position>
+      <X>-10</X>
+      <Y>0</Y>
+      <Z>60</Z>
+    </Position>
+    <Scale>2</Scale>
+    <RotationYFacing>90</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>cage</ModelName>
+  </GameObject>
+  <GameObject>
+    <Position>
+      <X>-10</X>
+      <Y>0</Y>
+      <Z>80</Z>
+    </Position>
+    <Scale>2</Scale>
+    <RotationYFacing>90</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>cage</ModelName>
+  </GameObject>
+<!--back 2-->
+  <GameObject>
+    <Position>
+      <X>0</X>
+      <Y>0</Y>
+      <Z>90</Z>
+    </Position>
+    <Scale>2</Scale>
+    <RotationYFacing>0</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>cage</ModelName>
+  </GameObject>
+  <GameObject>
+    <Position>
+      <X>20</X>
+      <Y>0</Y>
+      <Z>90</Z>
+    </Position>
+    <Scale>2</Scale>
+    <RotationYFacing>0</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>cage</ModelName>
+  </GameObject>
+  <!--people-->
+  <GameObject>
+    <Position>
+      <X>0</X>
+      <Y>0</Y>
+      <Z>40</Z>
+    </Position>
+    <Scale>4</Scale>
+    <RotationYFacing>0</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>male</ModelName>
+  </GameObject>
+  <GameObject>
+    <Position>
+      <X>10</X>
+      <Y>0</Y>
+      <Z>40</Z>
+    </Position>
+    <Scale>4</Scale>
+    <RotationYFacing>-45</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>female</ModelName>
+  </GameObject>
+  <GameObject>
+    <Position>
+      <X>20</X>
+      <Y>0</Y>
+      <Z>40</Z>
+    </Position>
+    <Scale>4</Scale>
+    <RotationYFacing>-45</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>2</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>female</ModelName>
+  </GameObject>
+  <GameObject>
+    <Position>
+      <X>10</X>
+      <Y>0</Y>
+      <Z>20</Z>
+    </Position>
+    <Scale>4</Scale>
+    <RotationYFacing>-90</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>female</ModelName>
+  </GameObject>
+  <GameObject>
+    <Position>
+      <X>8</X>
+      <Y>0</Y>
+      <Z>21</Z>
+    </Position>
+    <Scale>4</Scale>
+    <RotationYFacing>90</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>male</ModelName>
+  </GameObject>
+  <!--earth-->
+  <GameObject>
+    <Position>
+      <X>-10</X>
+      <Y>12</Y>
+      <Z>50</Z>
+    </Position>
+    <Scale>.75</Scale>
+    <RotationYFacing>0</RotationYFacing>
+    <RotateXSpeed>-1</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>earth</ModelName>
+  </GameObject>
+  <GameObject>
+    <Position>
+      <X>-10</X>
+      <Y>12</Y>
+      <Z>90</Z>
+    </Position>
+    <Scale>.75</Scale>
+    <RotationYFacing>0</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>1</RotateZSpeed>
+    <ModelName>earth</ModelName>
+  </GameObject>
+  <GameObject>
+    <Position>
+      <X>30</X>
+      <Y>12</Y>
+      <Z>90</Z>
+    </Position>
+    <Scale>.75</Scale>
+    <RotationYFacing>0</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>1</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>earth</ModelName>
+  </GameObject>
+  <GameObject>
+    <Position>
+      <X>30</X>
+      <Y>12</Y>
+      <Z>50</Z>
+    </Position>
+    <Scale>.75</Scale>
+    <RotationYFacing>0</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>1</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>earth</ModelName>
+  </GameObject>
+  <!--children-->
+  <GameObject>
+    <Position>
+      <X>5</X>
+      <Y>0</Y>
+      <Z>45</Z>
+    </Position>
+    <Scale>2.5</Scale>
+    <RotationYFacing>0</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>female</ModelName>
+  </GameObject>
+  <GameObject>
+    <Position>
+      <X>5</X>
+      <Y>20</Y>
+      <Z>100</Z>
+    </Position>
+    <Scale>8</Scale>
+    <RotationYFacing>0</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>2</RotateZSpeed>
+    <ModelName>female</ModelName>
+  </GameObject>
+  <GameObject>
+    <Position>
+      <X>5</X>
+      <Y>20</Y>
+      <Z>100</Z>
+    </Position>
+    <Scale>8</Scale>
+    <RotationYFacing>0</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>1</RotateZSpeed>
+    <ModelName>male</ModelName>
   </GameObject>
 </ArrayOfGameObject>

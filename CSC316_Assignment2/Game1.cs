@@ -220,7 +220,7 @@ namespace CSC316_Assignment2
                 // Scale * RotationXYZ * Translation
                 world = Matrix.CreateScale(gameObject.scale)
                         * Matrix.CreateRotationX(gameObject.rotateXSpeed * (float)gameTime.TotalGameTime.TotalSeconds)
-                        * (gameObject.rotateYSpeed != 0 ? Matrix.CreateRotationY(gameObject.rotateYSpeed * (float)gameTime.TotalGameTime.TotalSeconds) : Matrix.CreateRotationY(gameObject.rotateYFacing))
+                        * (gameObject.rotateYSpeed != 0 ? Matrix.CreateRotationY(gameObject.rotateYSpeed * (float)gameTime.TotalGameTime.TotalSeconds) : Matrix.CreateRotationY(MathHelper.ToRadians(gameObject.rotateYFacing)))
                         * Matrix.CreateRotationZ(gameObject.rotateZSpeed * (float)gameTime.TotalGameTime.TotalSeconds)
                         * Matrix.CreateTranslation(gameObject.position);
 
