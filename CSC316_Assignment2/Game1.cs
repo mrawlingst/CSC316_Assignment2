@@ -227,7 +227,16 @@ namespace CSC316_Assignment2
                 if (gameObject.modelName == ModelName.earth)
                     earth.Draw(world, view, projection);
                 else if (gameObject.modelName == ModelName.gorilla)
+                {
+                    foreach (var mesh in gorilla.Meshes)
+                    {
+                        foreach (BasicEffect effect in mesh.Effects)
+                        {
+                            effect.DiffuseColor = Color.Black.ToVector3();
+                        }
+                    }
                     gorilla.Draw(world, view, projection);
+                }
                 else if (gameObject.modelName == ModelName.male)
                     male.Draw(world, view, projection);
                 else if (gameObject.modelName == ModelName.female)

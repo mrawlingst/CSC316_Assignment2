@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfGameObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <GameObject>
+    <Position>
+      <X>20</X>
+      <Y>0</Y>
+      <Z>20</Z>
+    </Position>
+    <Scale>3</Scale>
+    <RotationYFacing>30</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <MoveSpeed>5</MoveSpeed>
+    <Waypoints>
+      <X>20</X>
+      <Y>0</Y>
+      <Z>20</Z>
+    </Waypoints>
+    <Waypoints>
+      <X>40</X>
+      <Y>0</Y>
+      <Z>40</Z>
+    </Waypoints>
+    <Waypoints>
+      <X>60</X>
+      <Y>0</Y>
+      <Z>10</Z>
+    </Waypoints>
+    <ModelName>gorilla</ModelName>
+  </GameObject>
+  <GameObject>
+    <Position>
+      <X>0</X>
+      <Y>0</Y>
+      <Z>0</Z>
+    </Position>
+    <Scale>1</Scale>
+    <RotationYFacing>45</RotationYFacing>
+    <RotateXSpeed>0</RotateXSpeed>
+    <RotateYSpeed>0</RotateYSpeed>
+    <RotateZSpeed>0</RotateZSpeed>
+    <ModelName>wall</ModelName>
+  </GameObject>
+</ArrayOfGameObject>
