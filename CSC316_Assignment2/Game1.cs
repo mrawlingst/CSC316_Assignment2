@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace CSC316_Assignment2
 {
-    public enum ModelName { earth, }
+    public enum ModelName { earth, gorilla, male, female, wall, cage }
     public class GameObject
     {
         [XmlElement("Position")]
@@ -16,6 +16,9 @@ namespace CSC316_Assignment2
 
         [XmlElement("Scale")]
         public float scale = 1;
+
+        [XmlElement("RotationYFacing")]
+        public float rotateYFacing = 0;
 
         [XmlElement("RotateXSpeed")]
         public float rotateXSpeed = 0;
@@ -44,14 +47,12 @@ namespace CSC316_Assignment2
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Model earth, sky, ground, avatar;
+        Model earth, sky, ground, avatar, gorilla, male, female, wall, cage;
 
         // Player settings
         Vector3 cameraPos;
         Vector3 playerPos;
         float rotationY;
-        bool isJumping;
-        bool isInAir;
 
         // GameObjects
         List<GameObject> gameObjects;
@@ -99,6 +100,11 @@ namespace CSC316_Assignment2
             sky = Content.Load<Model>("sky");
             ground = Content.Load<Model>("floor");
             avatar = Content.Load<Model>("avatar");
+            gorilla = Content.Load<Model>("gorilla");
+            male = Content.Load<Model>("human_male");
+            female = Content.Load<Model>("human_female");
+            wall = Content.Load<Model>("wall");
+            cage = Content.Load<Model>("cage");
 
             //List<GameObject> goList = new List<GameObject>();
             //GameObject go = new GameObject();
@@ -186,8 +192,8 @@ namespace CSC316_Assignment2
             ground.Draw(world, view, projection);
 
             // Draw earth
-            world = Matrix.CreateScale(1);
-            earth.Draw(world, view, projection);
+            //world = Matrix.CreateScale(1);
+            //earth.Draw(world, view, projection);
 
             // Draw sky
             world = Matrix.CreateScale(100);
@@ -199,11 +205,22 @@ namespace CSC316_Assignment2
                 // Scale * RotationXYZ * Translation
                 world = Matrix.CreateScale(gameObject.scale)
                         * Matrix.CreateRotationX(gameObject.rotateXSpeed * (float)gameTime.TotalGameTime.TotalSeconds)
-                        * Matrix.CreateRotationY(gameObject.rotateYSpeed * (float)gameTime.TotalGameTime.TotalSeconds)
+                        * (gameObject.rotateYSpeed != 0 ? Matrix.CreateRotationY(gameObject.rotateYSpeed * (float)gameTime.TotalGameTime.TotalSeconds) : Matrix.CreateRotationY(gameObject.rotateYFacing))
                         * Matrix.CreateRotationZ(gameObject.rotateZSpeed * (float)gameTime.TotalGameTime.TotalSeconds)
                         * Matrix.CreateTranslation(gameObject.position);
+
                 if (gameObject.modelName == ModelName.earth)
                     earth.Draw(world, view, projection);
+                else if (gameObject.modelName == ModelName.gorilla)
+                    gorilla.Draw(world, view, projection);
+                else if (gameObject.modelName == ModelName.male)
+                    male.Draw(world, view, projection);
+                else if (gameObject.modelName == ModelName.female)
+                    female.Draw(world, view, projection);
+                else if (gameObject.modelName == ModelName.wall)
+                    wall.Draw(world, view, projection);
+                else if (gameObject.modelName == ModelName.cage)
+                    cage.Draw(world, view, projection);
             }
 
             base.Draw(gameTime);
